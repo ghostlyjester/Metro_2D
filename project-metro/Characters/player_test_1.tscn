@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://bs8b8rin8xe01"]
+
+[ext_resource type="Texture2D" uid="uid://43oyvb0k81k4" path="res://Assets/Cat.webp" id="1_plhte"]
+
+[node name="PlayerTest1" type="CharacterBody2D"]
+
+[node name="Body" type="Sprite2D" parent="."]
+texture = ExtResource("1_plhte")
