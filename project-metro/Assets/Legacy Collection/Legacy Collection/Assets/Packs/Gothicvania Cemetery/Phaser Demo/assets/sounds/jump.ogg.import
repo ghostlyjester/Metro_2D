@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://dpol4gomh8rcl"
+path="res://.godot/imported/jump.ogg-079dc36fd926cd942b8697b55bbc893a.oggvorbisstr"
+
+[deps]
+
+source_file="res://Assets/Legacy Collection/Legacy Collection/Assets/Packs/Gothicvania Cemetery/Phaser Demo/assets/sounds/jump.ogg"
+dest_files=["res://.godot/imported/jump.ogg-079dc36fd926cd942b8697b55bbc893a.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
