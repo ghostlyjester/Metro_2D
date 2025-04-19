@@ -52,3 +52,11 @@ offset_left = 879.0
 offset_top = 31.0
 offset_right = 969.0
 offset_bottom = 67.0
+text = "Health: "
+
+[node name="health" type="Label" parent="."]
+offset_left = 940.0
+offset_top = 31.0
+offset_right = 980.0
+offset_bottom = 54.0
+text = "100"

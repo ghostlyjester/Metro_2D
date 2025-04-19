@@ -6,7 +6,7 @@ const JUMP_VELOCITY = -600.0
 
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
-var health = 100
+var health = 120
 
 @onready var anim_sprite = $AnimatedSprite2D
 
@@ -14,6 +14,18 @@ func _ready():
 	# Set up initial animation state
 	anim_sprite.play("idle")
 	$"../Label".text= "Health: "
+	
+	
+	
+func _input(event):
+	
+	if event.is_action_pressed("user_health") && (health > 1):
+		health -= 20
+	$"../health".text = str(health)
+	
+	if(health < 1):
+		$"../health".text = "Womp Womp..."
+		
 	
 
 func _physics_process(delta: float) -> void:
