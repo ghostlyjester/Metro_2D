@@ -3,14 +3,18 @@ extends CharacterBody2D
 const SPEED = 300.0
 const JUMP_VELOCITY = -600.0
 
+
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+var health = 100
 
 @onready var anim_sprite = $AnimatedSprite2D
 
 func _ready():
 	# Set up initial animation state
 	anim_sprite.play("idle")
+	$"../Label".text= "Health: "
+	
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
