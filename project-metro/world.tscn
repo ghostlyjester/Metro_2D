@@ -1,13 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://sjnkjbaf6es4"]
+[gd_scene load_steps=12 format=3 uid="uid://sjnkjbaf6es4"]
 
-[ext_resource type="Script" uid="uid://d1n5cmuwa35ub" path="res://world.gd" id="1_036b0"]
+[ext_resource type="Script" uid="uid://d1n5cmuwa35ub" path="res://src/world.gd" id="1_036b0"]
 [ext_resource type="Texture2D" uid="uid://c1pdla5at6wkr" path="res://icon.svg" id="1_f3sb7"]
 [ext_resource type="PackedScene" uid="uid://bs8b8rin8xe01" path="res://Characters/player_test_1.tscn" id="2_fj7yv"]
 [ext_resource type="PackedScene" uid="uid://6hw05sskmmao" path="res://Characters/enemy.tscn" id="4_aqk2v"]
+[ext_resource type="Script" uid="uid://cnbmkgu3wxbro" path="res://src/camera_2d.gd" id="4_dwbse"]
 [ext_resource type="Texture2D" uid="uid://ci5cuwywc12ta" path="res://Assets/Sprite Sheet 1.png" id="5_036b0"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fj7yv"]
-size = Vector2(528.5, 28)
+[ext_resource type="PackedScene" uid="uid://bnupbn3o5hd8x" path="res://Characters/kill_zone.tscn" id="6_pkg7o"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dwbse"]
 texture = ExtResource("5_036b0")
@@ -1870,9 +1869,58 @@ texture_region_size = Vector2i(16, 17)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_dwbse")
 
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gbfbk"]
+distance = 1.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fj7yv"]
+size = Vector2(528.5, 28)
+
 [node name="World" type="Node2D"]
 position = Vector2(-3, 2)
 script = ExtResource("1_036b0")
+
+[node name="TileMap" type="TileMap" parent="."]
+position = Vector2(521, 500)
+scale = Vector2(3, 3)
+tile_set = SubResource("TileSet_pkg7o")
+format = 2
+layer_0/tile_data = PackedInt32Array(-196606, 1114112, 13, -196605, 1114112, 13, -196604, 1114112, 13, -196603, 1114112, 13, -196602, 393216, 13, -196601, 458752, 13, -196600, 983040, 13, -196599, 1048576, 13, -196598, 1114112, 13, -196597, 1114112, 13, -196607, 1114112, 13, 131078, 786432, 13, 131079, 786432, 13, 131080, 786432, 13, 131081, 983040, 13, 131082, 1048576, 13, 131077, 458752, 13, 131076, 393216, 13, -196596, 1114112, 13, -196595, 1114112, 13, -196594, 1114112, 13, -196593, 1114112, 13, -196592, 1114112, 13, 327690, 327680, 13, 327691, 327680, 13, 327692, 393216, 13, 327693, 458752, 13, 327694, 524288, 13, 327695, 720896, 13, 327696, 720896, 13, 327697, 720896, 13, 327698, 720896, 13, 327699, 983040, 13, 327700, 1048576, 13, -262106, 327680, 13, -262105, 327680, 13, -262104, 393216, 13, -262103, 458752, 13, -262102, 720896, 13, -262101, 983040, 13, -262100, 1048576, 13, -262099, 1114112, 13, 131093, 327680, 13, 131094, 327680, 13, 131095, 327680, 13, 131096, 393216, 13, 131097, 458752, 13, 131098, 786432, 13, 131099, 786432, 13, 131100, 786432, 13, 131101, 917504, 13, 131102, 983040, 13, 131103, 1048576, 13, 131104, 327680, 13, -65503, 327680, 13, -65502, 327680, 13, -65501, 393216, 13, -65497, 1048576, 13, -65499, 983040, 13, -65498, 1048576, 13, -65500, 458752, 13, -327659, 327680, 13, -327658, 327680, 13, -327657, 393216, 13, -327656, 458752, 13, -327655, 524288, 13, -327654, 524288, 13, -327653, 524288, 13, -327652, 983040, 13, -327651, 1048576, 13, -327650, 327680, 13, -327649, 327680, 13, 327670, 327680, 13, 327671, 327680, 13, 327672, 393216, 13, 327673, 458752, 13, 327674, 524288, 13, 327675, 983040, 13, 327676, 1048576, 13, 327677, 1114112, 13, 327678, 1114112, 13, 327679, 1114112, 13, 262144, 1114112, 13, 65525, 458752, 13, 65526, 655360, 13, 65527, 655360, 13, 65528, 655360, 13, 65529, 655360, 13, 65530, 983040, 13, 65531, 1048576, 13, 65532, 327680, 13, 65533, 327680, 13, 65534, 327680, 13, 65522, 327680, 13, 65523, 327680, 13, 65524, 393216, 13)
+
+[node name="CharacterBody2D" parent="." instance=ExtResource("2_fj7yv")]
+position = Vector2(80, 454)
+
+[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
+position = Vector2(0, -13)
+zoom = Vector2(1.2, 1.2)
+limit_left = -500
+limit_bottom = 1100
+limit_smoothed = true
+script = ExtResource("4_dwbse")
+
+[node name="health" type="Label" parent="CharacterBody2D/Camera2D"]
+offset_left = 375.0
+offset_top = -274.0
+offset_right = 415.0
+offset_bottom = -251.0
+
+[node name="Label" type="Label" parent="CharacterBody2D/Camera2D"]
+offset_left = 318.0
+offset_top = -275.0
+offset_right = 407.0
+offset_bottom = -251.0
+text = "Health: "
+
+[node name="Timer" type="Timer" parent="CharacterBody2D/Camera2D"]
+wait_time = 0.001
+
+[node name="enemy" parent="." instance=ExtResource("4_aqk2v")]
+position = Vector2(811, 307)
+
+[node name="KillZone" parent="." instance=ExtResource("6_pkg7o")]
+position = Vector2(483, 988)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
+shape = SubResource("WorldBoundaryShape2D_gbfbk")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="."]
 position = Vector2(-430, -119)
@@ -1886,57 +1934,28 @@ position = Vector2(-759, 299)
 scale = Vector2(4.42969, 0.210938)
 texture = ExtResource("1_f3sb7")
 
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(78, 6)
+[node name="StaticBody2D" type="StaticBody2D" parent="StaticBody2D2"]
+position = Vector2(508, 125)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2/StaticBody2D"]
 position = Vector2(-1137, 667)
 shape = SubResource("RectangleShape2D_fj7yv")
 
-[node name="Icon" type="Sprite2D" parent="StaticBody2D"]
+[node name="Icon" type="Sprite2D" parent="StaticBody2D2/StaticBody2D"]
 position = Vector2(-1158, 705)
 scale = Vector2(4.48828, 0.210938)
 texture = ExtResource("1_f3sb7")
 
-[node name="StaticBody2D3" type="StaticBody2D" parent="."]
-position = Vector2(649, -264)
+[node name="StaticBody2D3" type="StaticBody2D" parent="StaticBody2D2/StaticBody2D"]
+position = Vector2(571, -270)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2/StaticBody2D/StaticBody2D3"]
 position = Vector2(-1798, 656)
 shape = SubResource("RectangleShape2D_fj7yv")
 
-[node name="Icon" type="Sprite2D" parent="StaticBody2D3"]
+[node name="Icon" type="Sprite2D" parent="StaticBody2D2/StaticBody2D/StaticBody2D3"]
 position = Vector2(-1802, 688)
 scale = Vector2(4.01563, 0.210938)
 texture = ExtResource("1_f3sb7")
 
-[node name="CharacterBody2D" parent="." instance=ExtResource("2_fj7yv")]
-position = Vector2(80, 454)
-
-[node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
-position = Vector2(0, -13)
-zoom = Vector2(1.2, 1.2)
-
-[node name="health" type="Label" parent="."]
-offset_left = 909.0
-offset_top = 35.0
-offset_right = 949.0
-offset_bottom = 58.0
-text = "100"
-
-[node name="Label" type="Label" parent="."]
-offset_left = 850.0
-offset_top = 35.0
-offset_right = 940.0
-offset_bottom = 71.0
-text = "Health: "
-
-[node name="enemy" parent="." instance=ExtResource("4_aqk2v")]
-position = Vector2(811, 307)
-
-[node name="TileMap" type="TileMap" parent="."]
-position = Vector2(521, 500)
-scale = Vector2(3, 3)
-tile_set = SubResource("TileSet_pkg7o")
-format = 2
-layer_0/tile_data = PackedInt32Array(-196606, 1114112, 13, -196605, 1114112, 13, -196604, 1114112, 13, -196603, 1114112, 13, -196602, 393216, 13, -196601, 458752, 13, -196600, 983040, 13, -196599, 1048576, 13, -196598, 1114112, 13, -196597, 1114112, 13, -196607, 1114112, 13, 131078, 786432, 13, 131079, 786432, 13, 131080, 786432, 13, 131081, 983040, 13, 131082, 1048576, 13, 131077, 458752, 13, 131076, 393216, 13, -196596, 1114112, 13, -196595, 1114112, 13, -196594, 1114112, 13, -196593, 1114112, 13, -196592, 1114112, 13, 327690, 327680, 13, 327691, 327680, 13, 327692, 393216, 13, 327693, 458752, 13, 327694, 524288, 13, 327695, 720896, 13, 327696, 720896, 13, 327697, 720896, 13, 327698, 720896, 13, 327699, 983040, 13, 327700, 1048576, 13, -262106, 327680, 13, -262105, 327680, 13, -262104, 393216, 13, -262103, 458752, 13, -262102, 720896, 13, -262101, 983040, 13, -262100, 1048576, 13, -262099, 1114112, 13, 131093, 327680, 13, 131094, 327680, 13, 131095, 327680, 13, 131096, 393216, 13, 131097, 458752, 13, 131098, 786432, 13, 131099, 786432, 13, 131100, 786432, 13, 131101, 917504, 13, 131102, 983040, 13, 131103, 1048576, 13, 131104, 327680, 13, -65503, 327680, 13, -65502, 327680, 13, -65501, 393216, 13, -65497, 1048576, 13, -65499, 983040, 13, -65498, 1048576, 13, -65500, 458752, 13, -327659, 327680, 13, -327658, 327680, 13, -327657, 393216, 13, -327656, 458752, 13, -327655, 524288, 13, -327654, 524288, 13, -327653, 524288, 13, -327652, 983040, 13, -327651, 1048576, 13, -327650, 327680, 13, -327649, 327680, 13, 327670, 327680, 13, 327671, 327680, 13, 327672, 393216, 13, 327673, 458752, 13, 327674, 524288, 13, 327675, 983040, 13, 327676, 1048576, 13, 327677, 1114112, 13, 327678, 1114112, 13, 327679, 1114112, 13, 262144, 1114112, 13, 65525, 458752, 13, 65526, 655360, 13, 65527, 655360, 13, 65528, 655360, 13, 65529, 655360, 13, 65530, 983040, 13, 65531, 1048576, 13, 65532, 327680, 13, 65533, 327680, 13, 65534, 327680, 13, 65522, 327680, 13, 65523, 327680, 13, 65524, 393216, 13)
+[connection signal="timeout" from="CharacterBody2D/Camera2D/Timer" to="CharacterBody2D" method="_on_timer_timeout"]
