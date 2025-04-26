@@ -1,15 +1,52 @@
-[gd_scene load_steps=6 format=3 uid="uid://sjnkjbaf6es4"]
+[gd_scene load_steps=12 format=3 uid="uid://sjnkjbaf6es4"]
 
 [ext_resource type="Script" uid="uid://d1n5cmuwa35ub" path="res://world.gd" id="1_036b0"]
 [ext_resource type="Texture2D" uid="uid://c1pdla5at6wkr" path="res://icon.svg" id="1_f3sb7"]
 [ext_resource type="PackedScene" uid="uid://bs8b8rin8xe01" path="res://Characters/player_test_1.tscn" id="2_fj7yv"]
-[ext_resource type="PackedScene" uid="uid://6hw05sskmmao" path="res://Characters/enemy.tscn" id="4_aqk2v"]
+[ext_resource type="Script" uid="uid://dtey571axo1jb" path="res://enemy.gd" id="3_tlwt5"]
+[ext_resource type="Texture2D" uid="uid://c77oyf015dl73" path="res://Assets/idle.png" id="5_dwbse"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fj7yv"]
 size = Vector2(1077.5, 20)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_pkg7o"]
+atlas = ExtResource("5_dwbse")
+region = Rect2(0, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gbfbk"]
+atlas = ExtResource("5_dwbse")
+region = Rect2(64, 0, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ioo17"]
+atlas = ExtResource("5_dwbse")
+region = Rect2(0, 128, 64, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wse8f"]
+atlas = ExtResource("5_dwbse")
+region = Rect2(64, 128, 64, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ic0uy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pkg7o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gbfbk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ioo17")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wse8f")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
 [node name="World" type="Node2D"]
-position = Vector2(-3, 2)
+position = Vector2(4, 0)
 script = ExtResource("1_036b0")
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
@@ -49,7 +86,6 @@ scale = Vector2(8.42969, 0.210938)
 texture = ExtResource("1_f3sb7")
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_fj7yv")]
-position = Vector2(77, 448)
 
 [node name="Label" type="Label" parent="."]
 offset_left = 879.0
@@ -65,5 +101,13 @@ offset_right = 980.0
 offset_bottom = 54.0
 text = "100"
 
-[node name="enemy" parent="." instance=ExtResource("4_aqk2v")]
-position = Vector2(811, 307)
+[node name="Enemy" type="CharacterBody2D" parent="."]
+position = Vector2(976, 309)
+collision_layer = 65535
+script = ExtResource("3_tlwt5")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Enemy"]
+position = Vector2(-1.99998, -1)
+scale = Vector2(1.05469, 0.925781)
+sprite_frames = SubResource("SpriteFrames_ic0uy")
+frame_progress = 0.6858

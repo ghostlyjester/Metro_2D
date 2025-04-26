@@ -27,23 +27,13 @@ func _input(event):
 		$"../health".text = "Womp Womp..."
 		
 	
-
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
 		velocity.y += gravity * delta
-		anim_sprite.play("jump")
-	
-	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-		anim_sprite.play("jump")
-	
-	# Handle attack animation
-	if Input.is_action_just_pressed("attack"):  # You'll need to define this input action
-		anim_sprite.play("attack")
-	
-	# Get the input direction and handle the movement/deceleration.
+		anim_sprite.play("idle")
+		
+		
 	var direction := Input.get_axis("left", "right")
 	if direction:
 		velocity.x = direction * SPEED
@@ -55,5 +45,15 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		if is_on_floor():
 			anim_sprite.play("idle")
+	# Handle jump.
+	if Input.is_action_just_pressed("jump") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+		anim_sprite.play("idle")
+	
+	# Handle attack animation
+	if Input.is_action_just_pressed("attack_user"):  # You'll need to define this input action
+		anim_sprite.play("attack")
+	
+	# Get the input direction and handle the movement/deceleration.
 	
 	move_and_slide()
