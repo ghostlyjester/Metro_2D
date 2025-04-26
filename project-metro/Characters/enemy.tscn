@@ -74,14 +74,13 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rtu5t"]
-size = Vector2(43, 99)
+size = Vector2(72.25, 102.5)
 
 [node name="enemy" type="Node2D"]
 position = Vector2(130, 92)
 script = ExtResource("1_4gyqm")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0, 3.5)
 scale = Vector2(1, 1.00781)
 sprite_frames = SubResource("SpriteFrames_kdubu")
 animation = &"run"
@@ -89,5 +88,5 @@ autoplay = "run"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-1, 1)
+position = Vector2(5, 0)
 shape = SubResource("RectangleShape2D_rtu5t")
