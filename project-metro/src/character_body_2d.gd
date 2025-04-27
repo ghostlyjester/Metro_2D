@@ -8,13 +8,14 @@ const JUMP_VELOCITY = -600.0
 # Get the gravity from the project settings to be synced with RigidBody nodes.
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
+var is_attacking = false;
+
 @onready var anim_sprite = $AnimatedSprite2D
 @onready var timer: Timer = $Camera2D/Timer
 
 func _ready():
 	# Set up initial animation state
 	anim_sprite.play("idle")
-	var health_c = get_node("../Camera2D") 
 	
 func _on_timer_timeout():
 	
@@ -28,29 +29,53 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y += gravity * delta
 		anim_sprite.play("idle")
-		
-		
-	var direction := Input.get_axis("left", "right")
 	
+	if is_attacking:
+		if not anim_sprite.is_playing():
+			is_attacking = false
+	else: 
+		
+		var direction := Input.get_axis("left", "right")
+		
+		if Input.is_action_just_pressed("attack_user") and is_on_floor(): 
+			 # You'll need to define this input action
+			anim_sprite.play("attack")
+			is_attacking = true
+		else:
+			if direction:
+				velocity.x = direction * SPEED
+				anim_sprite.flip_h = direction < 0
+				if is_on_floor():
+					anim_sprite.play("run")
+			else:
+				velocity.x = move_toward(velocity.x, 0, SPEED)
+				if is_on_floor():
+					anim_sprite.play("idle")
+					
+			if Input.is_action_just_pressed("jump") and is_on_floor():
+				velocity.y = JUMP_VELOCITY
+				anim_sprite.play("idle")
+				
+			
 	
-	if direction:
-		velocity.x = direction * SPEED
+	#if direction:
+		#velocity.x = direction * SPEED
 		# Flip sprite based on direction
-		anim_sprite.flip_h = direction < 0
-		if is_on_floor():
-			anim_sprite.play("run")
-	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-		if is_on_floor():
-			anim_sprite.play("idle")
+		#anim_sprite.flip_h = direction < 0
+		#if is_on_floor():
+			#anim_sprite.play("run")
+	#else:
+		#velocity.x = move_toward(velocity.x, 0, SPEED)
+		#if is_on_floor():
+			#anim_sprite.play("idle")
 	# Handle jump.
-	if Input.is_action_just_pressed("jump") and is_on_floor():
-		velocity.y = JUMP_VELOCITY
-		anim_sprite.play("idle")
+	#if Input.is_action_just_pressed("jump") and is_on_floor():
+		#velocity.y = JUMP_VELOCITY
+		#anim_sprite.play("idle")
 	
 	# Handle attack animation
-	if Input.is_action_just_pressed("attack_user"):  # You'll need to define this input action
-		anim_sprite.play("attack")
+	#if Input.is_action_just_pressed("attack_user"):  # You'll need to define this input action
+	#	anim_sprite.play("attack")
 	
 	# Get the input direction and handle the movement/deceleration.
 	

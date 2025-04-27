@@ -1,8 +1,9 @@
-[gd_scene load_steps=12 format=3 uid="uid://sjnkjbaf6es4"]
+[gd_scene load_steps=14 format=3 uid="uid://sjnkjbaf6es4"]
 
 [ext_resource type="Script" uid="uid://d1n5cmuwa35ub" path="res://src/world.gd" id="1_036b0"]
 [ext_resource type="Texture2D" uid="uid://c1pdla5at6wkr" path="res://icon.svg" id="1_f3sb7"]
 [ext_resource type="PackedScene" uid="uid://bs8b8rin8xe01" path="res://Characters/player_test_1.tscn" id="2_fj7yv"]
+[ext_resource type="Script" uid="uid://dure1phtvwa4f" path="res://src/canvas_layer.gd" id="3_gbfbk"]
 [ext_resource type="PackedScene" uid="uid://6hw05sskmmao" path="res://Characters/enemy.tscn" id="4_aqk2v"]
 [ext_resource type="Script" uid="uid://cnbmkgu3wxbro" path="res://src/camera_2d.gd" id="4_dwbse"]
 [ext_resource type="Texture2D" uid="uid://ci5cuwywc12ta" path="res://Assets/Sprite Sheet 1.png" id="5_036b0"]
@@ -1869,6 +1870,8 @@ texture_region_size = Vector2i(16, 17)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_dwbse")
 
+[sub_resource type="LabelSettings" id="LabelSettings_pkg7o"]
+
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gbfbk"]
 distance = 1.0
 
@@ -1884,10 +1887,42 @@ position = Vector2(521, 500)
 scale = Vector2(3, 3)
 tile_set = SubResource("TileSet_pkg7o")
 format = 2
-layer_0/tile_data = PackedInt32Array(-196606, 1114112, 13, -196605, 1114112, 13, -196604, 1114112, 13, -196603, 1114112, 13, -196602, 393216, 13, -196601, 458752, 13, -196600, 983040, 13, -196599, 1048576, 13, -196598, 1114112, 13, -196597, 1114112, 13, -196607, 1114112, 13, 131078, 786432, 13, 131079, 786432, 13, 131080, 786432, 13, 131081, 983040, 13, 131082, 1048576, 13, 131077, 458752, 13, 131076, 393216, 13, -196596, 1114112, 13, -196595, 1114112, 13, -196594, 1114112, 13, -196593, 1114112, 13, -196592, 1114112, 13, 327690, 327680, 13, 327691, 327680, 13, 327692, 393216, 13, 327693, 458752, 13, 327694, 524288, 13, 327695, 720896, 13, 327696, 720896, 13, 327697, 720896, 13, 327698, 720896, 13, 327699, 983040, 13, 327700, 1048576, 13, -262106, 327680, 13, -262105, 327680, 13, -262104, 393216, 13, -262103, 458752, 13, -262102, 720896, 13, -262101, 983040, 13, -262100, 1048576, 13, -262099, 1114112, 13, 131093, 327680, 13, 131094, 327680, 13, 131095, 327680, 13, 131096, 393216, 13, 131097, 458752, 13, 131098, 786432, 13, 131099, 786432, 13, 131100, 786432, 13, 131101, 917504, 13, 131102, 983040, 13, 131103, 1048576, 13, 131104, 327680, 13, -65503, 327680, 13, -65502, 327680, 13, -65501, 393216, 13, -65497, 1048576, 13, -65499, 983040, 13, -65498, 1048576, 13, -65500, 458752, 13, -327659, 327680, 13, -327658, 327680, 13, -327657, 393216, 13, -327656, 458752, 13, -327655, 524288, 13, -327654, 524288, 13, -327653, 524288, 13, -327652, 983040, 13, -327651, 1048576, 13, -327650, 327680, 13, -327649, 327680, 13, 327670, 327680, 13, 327671, 327680, 13, 327672, 393216, 13, 327673, 458752, 13, 327674, 524288, 13, 327675, 983040, 13, 327676, 1048576, 13, 327677, 1114112, 13, 327678, 1114112, 13, 327679, 1114112, 13, 262144, 1114112, 13, 65525, 458752, 13, 65526, 655360, 13, 65527, 655360, 13, 65528, 655360, 13, 65529, 655360, 13, 65530, 983040, 13, 65531, 1048576, 13, 65532, 327680, 13, 65533, 327680, 13, 65534, 327680, 13, 65522, 327680, 13, 65523, 327680, 13, 65524, 393216, 13)
+layer_0/tile_data = PackedInt32Array(-196606, 1114112, 13, -196605, 1114112, 13, -196604, 1114112, 13, -196603, 1114112, 13, -196602, 393216, 13, -196601, 458752, 13, -196600, 983040, 13, -196599, 1048576, 13, -196598, 1114112, 13, -196597, 1114112, 13, -196607, 1114112, 13, 131078, 786432, 13, 131079, 786432, 13, 131080, 786432, 13, 131081, 983040, 13, 131082, 1048576, 13, 131077, 458752, 13, 131076, 393216, 13, -196596, 1114112, 13, -196595, 1114112, 13, -196594, 1114112, 13, -196593, 1114112, 13, -196592, 1114112, 13, 327690, 327680, 13, 327691, 327680, 13, 327692, 393216, 13, 327693, 458752, 13, 327694, 524288, 13, 327695, 720896, 13, 327696, 720896, 13, 327697, 720896, 13, 327698, 720896, 13, 327699, 983040, 13, 327700, 1048576, 13, -262106, 327680, 13, -262105, 327680, 13, -262104, 393216, 13, -262103, 458752, 13, -262102, 720896, 13, -262101, 983040, 13, -262100, 1048576, 13, -262099, 1114112, 13, 131093, 327680, 13, 131094, 327680, 13, 131095, 327680, 13, 131104, 327680, 13, -65503, 327680, 13, -65502, 327680, 13, -327659, 327680, 13, -327658, 327680, 13, -327657, 393216, 13, -327656, 458752, 13, -327655, 524288, 13, -327654, 524288, 13, -327653, 524288, 13, -327652, 983040, 13, -327651, 1048576, 13, -327650, 327680, 13, -327649, 327680, 13, 327670, 327680, 13, 327678, 1114112, 13, 327679, 1114112, 13, 65525, 458752, 13, 65526, 655360, 13, 65527, 655360, 13, 65528, 655360, 13, 65529, 655360, 13, 65530, 983040, 13, 65531, 1048576, 13, 65532, 327680, 13, 65533, 327680, 13, 65534, 327680, 13, 65522, 327680, 13, 65523, 327680, 13, 65524, 393216, 13, 327677, 327680, 13, 327671, 327680, 13, 327672, 327680, 13, 327673, 327680, 13, 327674, 327680, 13, 327676, 327680, 13, 327675, 327680, 13, 131096, 327680, 13, 131100, 327680, 13, 131101, 327680, 13, 131102, 327680, 13, 131103, 327680, 13, 131098, 327680, 13, 131097, 327680, 13, 131099, 327680, 13, -65501, 327680, 13, -65500, 327680, 13, -65499, 327680, 13, -65498, 327680, 13, -65497, 327680, 13, -65496, 327680, 13, -65495, 327680, 13, -65494, 393216, 13, -65493, 458752, 13, -65492, 524288, 13, -65491, 524288, 13, -65490, 524288, 13, -65489, 524288, 13, -65488, 524288, 13, -65487, 983040, 13, -65486, 1048576, 13, -65485, 196608, 13, -65484, 196608, 13, -65483, 196608, 13, -65481, 196608, 13, -65480, 196608, 13, -65479, 196608, 13, -65478, 196608, 13, -65477, 196608, 13, -65482, 196608, 13)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+script = ExtResource("3_gbfbk")
+
+[node name="health" type="Label" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -74.0
+offset_top = 20.0
+offset_right = -28.0
+offset_bottom = 43.0
+grow_horizontal = 0
+text = "100"
+label_settings = SubResource("LabelSettings_pkg7o")
+clip_text = true
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -136.0
+offset_top = 20.0
+offset_right = -47.0
+offset_bottom = 44.0
+grow_horizontal = 0
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "Health: "
+
+[node name="Timer" type="Timer" parent="CanvasLayer"]
+wait_time = 0.3
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_fj7yv")]
-position = Vector2(80, 454)
+position = Vector2(78, 460)
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 position = Vector2(0, -13)
@@ -1897,27 +1932,11 @@ limit_bottom = 1100
 limit_smoothed = true
 script = ExtResource("4_dwbse")
 
-[node name="health" type="Label" parent="CharacterBody2D/Camera2D"]
-offset_left = 375.0
-offset_top = -274.0
-offset_right = 415.0
-offset_bottom = -251.0
-
-[node name="Label" type="Label" parent="CharacterBody2D/Camera2D"]
-offset_left = 318.0
-offset_top = -275.0
-offset_right = 407.0
-offset_bottom = -251.0
-text = "Health: "
-
-[node name="Timer" type="Timer" parent="CharacterBody2D/Camera2D"]
-wait_time = 0.001
-
 [node name="enemy" parent="." instance=ExtResource("4_aqk2v")]
-position = Vector2(811, 307)
+position = Vector2(817, 342)
 
 [node name="KillZone" parent="." instance=ExtResource("6_pkg7o")]
-position = Vector2(483, 988)
+position = Vector2(792, 843)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
 shape = SubResource("WorldBoundaryShape2D_gbfbk")
@@ -1958,4 +1977,4 @@ position = Vector2(-1802, 688)
 scale = Vector2(4.01563, 0.210938)
 texture = ExtResource("1_f3sb7")
 
-[connection signal="timeout" from="CharacterBody2D/Camera2D/Timer" to="CharacterBody2D" method="_on_timer_timeout"]
+[connection signal="timeout" from="CanvasLayer/Timer" to="CharacterBody2D" method="_on_timer_timeout"]
