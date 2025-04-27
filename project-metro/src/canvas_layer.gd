@@ -4,6 +4,7 @@ extends CanvasLayer
 
 var health_val = 100
 
+
 func _ready():
 	$Label.text= "Health: "
 	$health.text = str(health_val)

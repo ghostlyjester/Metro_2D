@@ -9,11 +9,10 @@ const JUMP_VELOCITY = -600.0
 var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var is_attacking = false;
-
+@onready var enemy: Node2D = $"../enemy"
 @onready var health_label: Label = $"../CanvasLayer/health"
 @onready var health: CanvasLayer = $"../CanvasLayer"
 @onready var anim_sprite = $AnimatedSprite2D
-@onready var timer: Timer = $Camera2D/Timer
 
 func _ready():
 	# Set up initial animation state
@@ -87,11 +86,12 @@ func _physics_process(delta: float) -> void:
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	print("Collided")
-	if area.is_in_group("enemy") and !is_attacking:
+	if area.is_in_group("enemy") and !is_attacking and !enemy.is_dead:
 		print("Health - 10")
 		health.health_val = health.health_val - 10
 		health_label.text = str(health.health_val)
 		
 	elif area.is_in_group("enemy") and is_attacking:
-		print("Enemy Health - 10")	
+		print("Enemy Health - 90")
+		enemy.health_val = enemy.health_val - 90
 	

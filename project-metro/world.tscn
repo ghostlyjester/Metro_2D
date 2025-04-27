@@ -1933,7 +1933,7 @@ limit_smoothed = true
 script = ExtResource("4_dwbse")
 
 [node name="enemy" parent="." instance=ExtResource("4_aqk2v")]
-position = Vector2(817, 342)
+position = Vector2(1802, 295)
 
 [node name="KillZone" parent="." instance=ExtResource("6_pkg7o")]
 position = Vector2(792, 843)
