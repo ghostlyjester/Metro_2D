@@ -10,6 +10,8 @@ var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
 
 var is_attacking = false;
 
+@onready var health_label: Label = $"../CanvasLayer/health"
+@onready var health: CanvasLayer = $"../CanvasLayer"
 @onready var anim_sprite = $AnimatedSprite2D
 @onready var timer: Timer = $Camera2D/Timer
 
@@ -80,4 +82,16 @@ func _physics_process(delta: float) -> void:
 	# Get the input direction and handle the movement/deceleration.
 	
 	move_and_slide()
+	
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	print("Collided")
+	if area.is_in_group("enemy") and !is_attacking:
+		print("Health - 10")
+		health.health_val = health.health_val - 10
+		health_label.text = str(health.health_val)
+		
+	elif area.is_in_group("enemy") and is_attacking:
+		print("Enemy Health - 10")	
 	

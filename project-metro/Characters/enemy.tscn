@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://6hw05sskmmao"]
+[gd_scene load_steps=17 format=3 uid="uid://6hw05sskmmao"]
 
 [ext_resource type="Script" uid="uid://byqm7qc2tny5n" path="res://src/enemy.gd" id="1_4gyqm"]
 [ext_resource type="Texture2D" uid="uid://qoemjjmgrmpm" path="res://Assets/Spider Sprite Sheet.png" id="2_rtu5t"]
@@ -91,6 +91,9 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rtu5t"]
 size = Vector2(112, 84.25)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sdfay"]
+size = Vector2(107, 82)
+
 [node name="enemy" type="Node2D"]
 position = Vector2(130, 92)
 script = ExtResource("1_4gyqm")
@@ -105,3 +108,11 @@ autoplay = "run"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(105, -23)
 shape = SubResource("RectangleShape2D_rtu5t")
+
+[node name="Area2D" type="Area2D" parent="." groups=["enemy", "player"]]
+position = Vector2(104, -20)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0.5, -3)
+shape = SubResource("RectangleShape2D_sdfay")
+debug_color = Color(0.842411, 0.00108082, 0.917675, 0.42)

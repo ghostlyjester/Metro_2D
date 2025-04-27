@@ -17,7 +17,7 @@ func _process(delta):
 		direction = 1
 		animated_sprite_2d.flip_h = true
 
-	elif position.x > 1200:
+	elif position.x > 1700:
 		direction = -1
 		animated_sprite_2d.flip_h = false
 		

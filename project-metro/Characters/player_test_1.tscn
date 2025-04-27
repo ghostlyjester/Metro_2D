@@ -1,13 +1,10 @@
-[gd_scene load_steps=20 format=3 uid="uid://bs8b8rin8xe01"]
+[gd_scene load_steps=21 format=3 uid="uid://bs8b8rin8xe01"]
 
 [ext_resource type="Script" uid="uid://daddw3u844g3v" path="res://src/character_body_2d.gd" id="1_hem62"]
 [ext_resource type="Texture2D" uid="uid://trtjf43yebpu" path="res://Assets/attack.png" id="2_po3eb"]
 [ext_resource type="Texture2D" uid="uid://c1pdla5at6wkr" path="res://icon.svg" id="3_kl4m2"]
 [ext_resource type="Texture2D" uid="uid://c77oyf015dl73" path="res://Assets/idle.png" id="3_qw2mt"]
 [ext_resource type="Texture2D" uid="uid://bt0ocnuk1663h" path="res://Assets/running.png" id="5_4y6uw"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_5mpea"]
-size = Vector2(46.5, 91.5)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_blysj"]
 atlas = ExtResource("2_po3eb")
@@ -119,17 +116,34 @@ animations = [{
 "speed": 10.0
 }]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5mpea"]
+size = Vector2(46.5, 91.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_po3eb"]
+size = Vector2(42, 87.5)
+
 [node name="CharacterBody2D" type="CharacterBody2D"]
 position = Vector2(229, 140)
 collision_layer = 2
 script = ExtResource("1_hem62")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(7.75, -4.25)
-shape = SubResource("RectangleShape2D_5mpea")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(9, -1)
 scale = Vector2(0.89453, 0.929688)
 sprite_frames = SubResource("SpriteFrames_1")
 animation = &"attack"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(11, -2)
+shape = SubResource("RectangleShape2D_5mpea")
+
+[node name="Area2D" type="Area2D" parent="." groups=["player"]]
+position = Vector2(95, 100)
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["enemy", "player"]]
+position = Vector2(-84, -101)
+shape = SubResource("RectangleShape2D_po3eb")
+debug_color = Color(0.831709, 0.0013929, 0.94157, 0.42)
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
