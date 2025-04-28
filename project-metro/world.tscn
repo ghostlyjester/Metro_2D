@@ -1919,26 +1919,27 @@ show_percentage = false
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -157.0
-offset_top = 14.0
-offset_right = -63.0
-offset_bottom = 38.0
+offset_left = -161.0
+offset_top = 16.0
+offset_right = -42.0
+offset_bottom = 40.0
 grow_horizontal = 0
 size_flags_horizontal = 8
 size_flags_vertical = 0
-text = "Health: 100/"
+text = "Health:       /100"
 
 [node name="health" type="Label" parent="CanvasLayer"]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -64.0
-offset_top = 14.0
-offset_right = -18.0
-offset_bottom = 37.0
+offset_left = -123.0
+offset_top = 16.0
+offset_right = -77.0
+offset_bottom = 39.0
 grow_horizontal = 0
 text = "100"
 label_settings = SubResource("LabelSettings_pkg7o")
+horizontal_alignment = 2
 clip_text = true
 
 [node name="enemy" parent="." instance=ExtResource("4_aqk2v")]
