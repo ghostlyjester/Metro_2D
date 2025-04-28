@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://sjnkjbaf6es4"]
+[gd_scene load_steps=16 format=3 uid="uid://sjnkjbaf6es4"]
 
 [ext_resource type="Script" uid="uid://d1n5cmuwa35ub" path="res://src/world.gd" id="1_036b0"]
 [ext_resource type="Texture2D" uid="uid://c1pdla5at6wkr" path="res://icon.svg" id="1_f3sb7"]
@@ -1870,6 +1870,12 @@ texture_region_size = Vector2i(16, 17)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_dwbse")
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_gbfbk"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ioo17"]
+bg_color = Color(0.533324, 3.24883e-07, 2.88785e-07, 1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_pkg7o"]
 
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gbfbk"]
@@ -1892,37 +1898,54 @@ layer_0/tile_data = PackedInt32Array(-196606, 1114112, 13, -196605, 1114112, 13,
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 script = ExtResource("3_gbfbk")
 
-[node name="health" type="Label" parent="CanvasLayer"]
+[node name="Timer" type="Timer" parent="CanvasLayer"]
+wait_time = 0.3
+
+[node name="HealthBar" type="ProgressBar" parent="CanvasLayer"]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -74.0
-offset_top = 20.0
-offset_right = -28.0
-offset_bottom = 43.0
+offset_left = -168.0
+offset_top = 17.0
+offset_right = -17.0
+offset_bottom = 37.0
 grow_horizontal = 0
-text = "100"
-label_settings = SubResource("LabelSettings_pkg7o")
-clip_text = true
+theme_override_styles/background = SubResource("StyleBoxFlat_gbfbk")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ioo17")
+value = 50.0
+show_percentage = false
 
 [node name="Label" type="Label" parent="CanvasLayer"]
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -136.0
-offset_top = 20.0
-offset_right = -47.0
-offset_bottom = 44.0
+offset_left = -157.0
+offset_top = 14.0
+offset_right = -63.0
+offset_bottom = 38.0
 grow_horizontal = 0
 size_flags_horizontal = 8
 size_flags_vertical = 0
-text = "Health: "
+text = "Health: 100/"
 
-[node name="Timer" type="Timer" parent="CanvasLayer"]
-wait_time = 0.3
+[node name="health" type="Label" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -64.0
+offset_top = 14.0
+offset_right = -18.0
+offset_bottom = 37.0
+grow_horizontal = 0
+text = "100"
+label_settings = SubResource("LabelSettings_pkg7o")
+clip_text = true
+
+[node name="enemy" parent="." instance=ExtResource("4_aqk2v")]
+position = Vector2(1802, 295)
 
 [node name="CharacterBody2D" parent="." instance=ExtResource("2_fj7yv")]
-position = Vector2(78, 460)
+position = Vector2(82, 466)
 
 [node name="Camera2D" type="Camera2D" parent="CharacterBody2D"]
 position = Vector2(0, -13)
@@ -1931,9 +1954,6 @@ limit_left = -500
 limit_bottom = 1100
 limit_smoothed = true
 script = ExtResource("4_dwbse")
-
-[node name="enemy" parent="." instance=ExtResource("4_aqk2v")]
-position = Vector2(1802, 295)
 
 [node name="KillZone" parent="." instance=ExtResource("6_pkg7o")]
 position = Vector2(792, 843)
