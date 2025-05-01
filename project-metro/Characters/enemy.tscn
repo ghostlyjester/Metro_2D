@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://6hw05sskmmao"]
+[gd_scene load_steps=29 format=3 uid="uid://6hw05sskmmao"]
 
 [ext_resource type="Script" uid="uid://byqm7qc2tny5n" path="res://src/enemy.gd" id="1_4gyqm"]
 [ext_resource type="Texture2D" uid="uid://qoemjjmgrmpm" path="res://Assets/Spider Sprite Sheet.png" id="2_rtu5t"]
@@ -192,6 +192,12 @@ size = Vector2(112, 84.25)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sdfay"]
 size = Vector2(107, 82)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rtu5t"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sdfay"]
+bg_color = Color(0.638884, 2.10572e-06, 4.81308e-08, 1)
+
 [node name="enemy" type="Node2D"]
 position = Vector2(116, 82)
 script = ExtResource("1_4gyqm")
@@ -223,6 +229,17 @@ target_position = Vector2(66, 1)
 [node name="RayCastRight" type="RayCast2D" parent="."]
 position = Vector2(0, 17)
 target_position = Vector2(-64, 0)
+
+[node name="EnHealth Bar" type="ProgressBar" parent="."]
+offset_left = -45.0
+offset_top = -39.0
+offset_right = 49.0
+offset_bottom = -27.0
+theme_override_styles/background = SubResource("StyleBoxFlat_rtu5t")
+theme_override_styles/fill = SubResource("StyleBoxFlat_sdfay")
+max_value = 90.0
+value = 45.0
+show_percentage = false
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

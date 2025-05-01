@@ -3,7 +3,7 @@ extends CanvasLayer
 @onready var timer: Timer = $Timer
 @onready var health_bar: ProgressBar = $HealthBar
 
-var health_val = 100
+var health_val = 120
 
 
 func _ready():
@@ -12,7 +12,7 @@ func _ready():
 	health_bar.value = health_val
 
 func _input(event):
-	
+
 	if event.is_action_pressed("user_health") && (health_val > 1):
 		
 		health_val -= 20

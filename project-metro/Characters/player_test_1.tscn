@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://bs8b8rin8xe01"]
+[gd_scene load_steps=33 format=3 uid="uid://bs8b8rin8xe01"]
 
 [ext_resource type="Script" uid="uid://daddw3u844g3v" path="res://src/character_body_2d.gd" id="1_hem62"]
 [ext_resource type="Texture2D" uid="uid://baqp0fd1esmq6" path="res://Assets/main char(concept)/Soldier.png" id="2_hem62"]
@@ -126,7 +126,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"attack",
-"speed": 20.0
+"speed": 30.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -209,6 +209,12 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_5mpea"]
 size = Vector2(58, 91.5)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hem62"]
+size = Vector2(43.75, 91.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bq0br"]
+size = Vector2(45.25, 92)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_po3eb"]
 size = Vector2(54, 87.5)
 
@@ -222,18 +228,38 @@ position = Vector2(16, 10)
 scale = Vector2(3.35432, 3.62871)
 sprite_frames = SubResource("SpriteFrames_1")
 animation = &"attack"
+frame = 5
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(15, -9)
 shape = SubResource("RectangleShape2D_5mpea")
 
-[node name="Area2D" type="Area2D" parent="." groups=["enemy", "player"]]
+[node name="DamageLeft" type="Area2D" parent="." groups=["enemy", "player"]]
 position = Vector2(95, 100)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageLeft" groups=["enemy", "player"]]
+position = Vector2(-54.125, -109)
+shape = SubResource("RectangleShape2D_hem62")
+debug_color = Color(0.960784, 0, 0, 0.419608)
+
+[node name="DamageRight" type="Area2D" parent="." groups=["enemy", "player"]]
+position = Vector2(95, 100)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageRight" groups=["enemy", "player"]]
+position = Vector2(-103.625, -109)
+shape = SubResource("RectangleShape2D_bq0br")
+debug_color = Color(0.941176, 0, 0, 0.419608)
+
+[node name="Area2D" type="Area2D" parent="." groups=["enemy", "player"]]
+position = Vector2(42, 80)
 collision_layer = 2
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" groups=["enemy", "player"]]
-position = Vector2(-80, -107)
+position = Vector2(-27, -90)
 shape = SubResource("RectangleShape2D_po3eb")
 debug_color = Color(0.831709, 0.0013929, 0.94157, 0.42)
 
+[connection signal="area_entered" from="DamageLeft" to="." method="_on_damage_left_area_entered"]
+[connection signal="area_entered" from="DamageRight" to="." method="_on_damage_right_area_entered"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

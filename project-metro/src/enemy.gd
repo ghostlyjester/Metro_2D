@@ -12,12 +12,16 @@ var is_dead  = false
 @onready var ray_cast_right: RayCast2D = $RayCastRight
 @onready var timer: Timer = $Timer
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var en_health_bar: ProgressBar = $"EnHealth Bar"
+
 
 func _ready():
 	animated_sprite_2d.play("run")
 
 
 func _process(delta):
+	
+	en_health_bar.value = health_val
 	
 	if health_val > 0:
 		position.x += direction * SPEED * delta 
@@ -36,3 +40,4 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	if animated_sprite_2d.animation == "death":
 		is_dead = true
 		animated_sprite_2d.play("st_death")
+		en_health_bar.visible = false
