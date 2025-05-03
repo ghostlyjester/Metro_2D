@@ -12,6 +12,7 @@ var is_attacking = false;
 var in_left = false;
 var in_right = false;
 
+@onready var enemy_2d: CharacterBody2D = $"../enemy_2d"
 @onready var enemy: Node2D = $"../enemy"
 @onready var health_label: Label = $"../CanvasLayer/health"
 @onready var health: CanvasLayer = $"../CanvasLayer"
@@ -62,16 +63,18 @@ func _physics_process(delta: float) -> void:
 				anim_sprite.play("idle")
 	
 	move_and_slide()
-	
 
 
-func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area.is_in_group("enemy") and !is_attacking and !enemy.is_dead :
-		print("Health - 10")
-		health.health_val = health.health_val - 10
-		health_bar.value = health.health_val
-		health_label.text = str(health.health_val)
-	
+func _on_damage_right_area_entered(area: Area2D) -> void:
+	if area.is_in_group("enemy") and is_attacking and !enemy.is_dead and !in_left:
+		print("Enemy Health - 30")
+		enemy.health_val = enemy.health_val - 30
+		in_right = true
+		
+	if area.is_in_group("enemy_2d") and is_attacking and !enemy_2d.is_dead and !in_left:
+		print("Enemy Health - 30")
+		enemy_2d.health_val = enemy_2d.health_val - 30
+		in_right = true
 
 
 func _on_damage_left_area_entered(area: Area2D) -> void:
@@ -80,10 +83,15 @@ func _on_damage_left_area_entered(area: Area2D) -> void:
 		enemy.health_val = enemy.health_val - 30
 		in_left = true
 		
-
-
-func _on_damage_right_area_entered(area: Area2D) -> void:
-	if area.is_in_group("enemy") and is_attacking and !enemy.is_dead and !in_left:
+	if area.is_in_group("enemy_2d") and is_attacking and !enemy_2d.is_dead and !in_right:
 		print("Enemy Health - 30")
-		enemy.health_val = enemy.health_val - 30
-		in_right = true
+		enemy_2d.health_val = enemy_2d.health_val - 30
+		in_left = true
+
+
+func _on_pl_hit_box_area_entered(area: Area2D) -> void:
+	if (area.is_in_group("enemy") or area.is_in_group("enemy_2d")) and !is_attacking and (!enemy.is_dead or !enemy_2d.is_dead) :
+		print("Health - 10")
+		health.health_val = health.health_val - 10
+		health_bar.value = health.health_val
+		health_label.text = str(health.health_val)

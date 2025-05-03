@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://bs8b8rin8xe01"]
+[gd_scene load_steps=32 format=3 uid="uid://bs8b8rin8xe01"]
 
 [ext_resource type="Script" uid="uid://daddw3u844g3v" path="res://src/character_body_2d.gd" id="1_hem62"]
 [ext_resource type="Texture2D" uid="uid://baqp0fd1esmq6" path="res://Assets/main char(concept)/Soldier.png" id="2_hem62"]
@@ -210,13 +210,10 @@ animations = [{
 size = Vector2(58, 91.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hem62"]
-size = Vector2(59, 91.5)
+size = Vector2(43.75, 91.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bq0br"]
-size = Vector2(58, 92)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_po3eb"]
-size = Vector2(57, 90)
+size = Vector2(45.25, 92)
 
 [node name="CharacterBody2D" type="CharacterBody2D"]
 position = Vector2(229, 140)
@@ -235,29 +232,21 @@ frame_progress = 1.0
 position = Vector2(15, -9)
 shape = SubResource("RectangleShape2D_5mpea")
 
-[node name="DamageLeft" type="Area2D" parent="." groups=["enemy", "enemy_2d", "player"]]
+[node name="DamageLeft" type="Area2D" parent="." groups=["enemy", "player"]]
 position = Vector2(95, 100)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageLeft" groups=["enemy", "player"]]
-position = Vector2(-109, -109)
+position = Vector2(-54.125, -109)
 shape = SubResource("RectangleShape2D_hem62")
 debug_color = Color(0.960784, 0, 0, 0.419608)
 
-[node name="DamageRight" type="Area2D" parent="." groups=["enemy", "enemy_2d", "player"]]
+[node name="DamageRight" type="Area2D" parent="." groups=["enemy", "player"]]
 position = Vector2(95, 100)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageRight" groups=["enemy", "player"]]
-position = Vector2(-50, -109)
+position = Vector2(-103.625, -109)
 shape = SubResource("RectangleShape2D_bq0br")
 debug_color = Color(0.941176, 0, 0, 0.419608)
 
-[node name="PLHitBox" type="Area2D" parent="." groups=["enemy", "enemy_2d", "player"]]
-
-[node name="PLHitBoxCollision" type="CollisionShape2D" parent="PLHitBox" groups=["enemy", "player"]]
-position = Vector2(14.5, -8)
-shape = SubResource("RectangleShape2D_po3eb")
-debug_color = Color(0.590731, 0.000621079, 0.666343, 0.42)
-
 [connection signal="area_entered" from="DamageLeft" to="." method="_on_damage_left_area_entered"]
 [connection signal="area_entered" from="DamageRight" to="." method="_on_damage_right_area_entered"]
-[connection signal="area_entered" from="PLHitBox" to="." method="_on_pl_hit_box_area_entered"]
