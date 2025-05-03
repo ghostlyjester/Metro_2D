@@ -1,11 +1,11 @@
-[gd_scene load_steps=19 format=3 uid="uid://sjnkjbaf6es4"]
+[gd_scene load_steps=18 format=3 uid="uid://sjnkjbaf6es4"]
 
 [ext_resource type="Script" uid="uid://d1n5cmuwa35ub" path="res://src/world.gd" id="1_036b0"]
-[ext_resource type="Texture2D" uid="uid://c1pdla5at6wkr" path="res://icon.svg" id="1_f3sb7"]
 [ext_resource type="PackedScene" uid="uid://bs8b8rin8xe01" path="res://Characters/player_test_1.tscn" id="2_fj7yv"]
 [ext_resource type="Script" uid="uid://dure1phtvwa4f" path="res://src/canvas_layer.gd" id="3_gbfbk"]
 [ext_resource type="PackedScene" uid="uid://6hw05sskmmao" path="res://Characters/enemy.tscn" id="4_aqk2v"]
 [ext_resource type="Script" uid="uid://cnbmkgu3wxbro" path="res://src/camera_2d.gd" id="4_dwbse"]
+[ext_resource type="PackedScene" uid="uid://cumbfw34pjywu" path="res://Characters/bg.tscn" id="4_ic0uy"]
 [ext_resource type="Texture2D" uid="uid://ci5cuwywc12ta" path="res://Assets/Sprite Sheet 1.png" id="5_036b0"]
 [ext_resource type="PackedScene" uid="uid://bnupbn3o5hd8x" path="res://Characters/kill_zone.tscn" id="6_pkg7o"]
 [ext_resource type="PackedScene" uid="uid://bmbync0jd6mmm" path="res://Characters/enemy_2d.tscn" id="9_ioo17"]
@@ -3746,9 +3746,6 @@ bg_color = Color(0.533324, 3.24883e-07, 2.88785e-07, 1)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_gbfbk"]
 distance = 1.0
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fj7yv"]
-size = Vector2(528.5, 28)
-
 [node name="World" type="Node2D"]
 position = Vector2(-3, 2)
 script = ExtResource("1_036b0")
@@ -3814,6 +3811,12 @@ label_settings = SubResource("LabelSettings_pkg7o")
 horizontal_alignment = 2
 clip_text = true
 
+[node name="CanvasLayer" type="CanvasLayer" parent="CanvasLayer"]
+layer = -1
+
+[node name="bg" parent="CanvasLayer/CanvasLayer" instance=ExtResource("4_ic0uy")]
+position = Vector2(176, 4)
+
 [node name="enemy" parent="." instance=ExtResource("4_aqk2v")]
 position = Vector2(1115, 302)
 
@@ -3829,7 +3832,7 @@ zoom = Vector2(1.2, 1.2)
 limit_left = -500
 limit_right = 2300
 limit_bottom = 1150
-limit_smoothed = true
+position_smoothing_enabled = true
 script = ExtResource("4_dwbse")
 
 [node name="KillZone" parent="." instance=ExtResource("6_pkg7o")]
@@ -3837,41 +3840,5 @@ position = Vector2(792, 843)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="KillZone"]
 shape = SubResource("WorldBoundaryShape2D_gbfbk")
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2(-430, -119)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(-745, 278)
-shape = SubResource("RectangleShape2D_fj7yv")
-
-[node name="Icon" type="Sprite2D" parent="StaticBody2D2"]
-position = Vector2(-759, 299)
-scale = Vector2(4.42969, 0.210938)
-texture = ExtResource("1_f3sb7")
-
-[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(-629, 792)
-shape = SubResource("RectangleShape2D_fj7yv")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="StaticBody2D2"]
-position = Vector2(508, 125)
-
-[node name="Icon" type="Sprite2D" parent="StaticBody2D2/StaticBody2D"]
-position = Vector2(-1158, 705)
-scale = Vector2(4.48828, 0.210938)
-texture = ExtResource("1_f3sb7")
-
-[node name="StaticBody2D3" type="StaticBody2D" parent="StaticBody2D2/StaticBody2D"]
-position = Vector2(571, -270)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2/StaticBody2D/StaticBody2D3"]
-position = Vector2(-1798, 656)
-shape = SubResource("RectangleShape2D_fj7yv")
-
-[node name="Icon" type="Sprite2D" parent="StaticBody2D2/StaticBody2D/StaticBody2D3"]
-position = Vector2(-1802, 688)
-scale = Vector2(4.01563, 0.210938)
-texture = ExtResource("1_f3sb7")
 
 [connection signal="timeout" from="CanvasLayer/Timer" to="CharacterBody2D" method="_on_timer_timeout"]

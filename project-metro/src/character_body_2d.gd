@@ -90,7 +90,12 @@ func _on_damage_left_area_entered(area: Area2D) -> void:
 
 
 func _on_pl_hit_box_area_entered(area: Area2D) -> void:
-	if (area.is_in_group("enemy") or area.is_in_group("enemy_2d")) and !is_attacking and (!enemy.is_dead or !enemy_2d.is_dead) :
+	if area.is_in_group("enemy")  and !is_attacking and !enemy.is_dead :
+		print("Health - 10")
+		health.health_val = health.health_val - 10
+		health_bar.value = health.health_val
+		health_label.text = str(health.health_val)
+	if area.is_in_group("enemy_2d") and !is_attacking and !enemy_2d.is_dead:
 		print("Health - 10")
 		health.health_val = health.health_val - 10
 		health_bar.value = health.health_val

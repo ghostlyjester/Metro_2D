@@ -3,7 +3,7 @@ extends CanvasLayer
 @onready var timer: Timer = $Timer
 @onready var health_bar: ProgressBar = $HealthBar
 
-var health_val = 120
+var health_val = 140
 
 
 func _ready():

@@ -199,7 +199,7 @@ bg_color = Color(0, 0, 0, 1)
 bg_color = Color(0.638884, 2.10572e-06, 4.81308e-08, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_mpxx0"]
-size = Vector2(941.5, 87)
+size = Vector2(750.75, 87)
 
 [node name="enemy" type="Node2D"]
 position = Vector2(116, 82)
@@ -209,9 +209,7 @@ script = ExtResource("1_4gyqm")
 position = Vector2(3, -81)
 scale = Vector2(7.59375, 8.81641)
 sprite_frames = SubResource("SpriteFrames_kdubu")
-animation = &"death"
-frame = 14
-frame_progress = 1.0
+animation = &"run"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." groups=["enemy", "player"]]
 position = Vector2(2, 17)
@@ -251,7 +249,7 @@ show_percentage = false
 [node name="ChaseArea" type="Area2D" parent="."]
 
 [node name="ChaseCollision" type="CollisionShape2D" parent="ChaseArea"]
-position = Vector2(2, 17)
+position = Vector2(0, 17)
 shape = SubResource("RectangleShape2D_mpxx0")
 debug_color = Color(0.108256, 0.480443, 4.81307e-07, 0.419608)
 

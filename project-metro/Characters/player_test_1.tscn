@@ -1,27 +1,15 @@
-[gd_scene load_steps=33 format=3 uid="uid://bs8b8rin8xe01"]
+[gd_scene load_steps=30 format=3 uid="uid://bs8b8rin8xe01"]
 
 [ext_resource type="Script" uid="uid://daddw3u844g3v" path="res://src/character_body_2d.gd" id="1_hem62"]
 [ext_resource type="Texture2D" uid="uid://baqp0fd1esmq6" path="res://Assets/main char(concept)/Soldier.png" id="2_hem62"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_bq0br"]
-atlas = ExtResource("2_hem62")
-region = Rect2(0, 200, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_5mpea"]
 atlas = ExtResource("2_hem62")
 region = Rect2(100, 200, 100, 100)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_po3eb"]
-atlas = ExtResource("2_hem62")
-region = Rect2(200, 200, 100, 100)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_qw2mt"]
 atlas = ExtResource("2_hem62")
 region = Rect2(300, 200, 100, 100)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_4y6uw"]
-atlas = ExtResource("2_hem62")
-region = Rect2(400, 200, 100, 100)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_blysj"]
 atlas = ExtResource("2_hem62")
@@ -107,26 +95,17 @@ region = Rect2(700, 100, 100, 100)
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_bq0br")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_5mpea")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_po3eb")
-}, {
-"duration": 1.0,
 "texture": SubResource("AtlasTexture_qw2mt")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_4y6uw")
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_blysj")
 }],
 "loop": false,
 "name": &"attack",
-"speed": 30.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -210,10 +189,10 @@ animations = [{
 size = Vector2(58, 91.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hem62"]
-size = Vector2(59, 91.5)
+size = Vector2(52.5, 91.5)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_bq0br"]
-size = Vector2(58, 92)
+size = Vector2(54.5, 92)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_po3eb"]
 size = Vector2(57, 90)
@@ -224,12 +203,10 @@ collision_layer = 2
 script = ExtResource("1_hem62")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(16, 10)
+position = Vector2(14, 10)
 scale = Vector2(3.35432, 3.62871)
 sprite_frames = SubResource("SpriteFrames_1")
 animation = &"attack"
-frame = 5
-frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(15, -9)
@@ -239,22 +216,22 @@ shape = SubResource("RectangleShape2D_5mpea")
 position = Vector2(95, 100)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageLeft" groups=["enemy", "player"]]
-position = Vector2(-109, -109)
+position = Vector2(-111.75, -109)
 shape = SubResource("RectangleShape2D_hem62")
 debug_color = Color(0.960784, 0, 0, 0.419608)
 
 [node name="DamageRight" type="Area2D" parent="." groups=["enemy", "enemy_2d", "player"]]
 position = Vector2(95, 100)
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageRight" groups=["enemy", "player"]]
-position = Vector2(-50, -109)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DamageRight" groups=["enemy", "enemy_2d", "player"]]
+position = Vector2(-49.25, -109)
 shape = SubResource("RectangleShape2D_bq0br")
 debug_color = Color(0.941176, 0, 0, 0.419608)
 
 [node name="PLHitBox" type="Area2D" parent="." groups=["enemy", "enemy_2d", "player"]]
 
-[node name="PLHitBoxCollision" type="CollisionShape2D" parent="PLHitBox" groups=["enemy", "player"]]
-position = Vector2(14.5, -8)
+[node name="PLHitBoxCollision" type="CollisionShape2D" parent="PLHitBox" groups=["enemy", "enemy_2d", "player"]]
+position = Vector2(16, -10)
 shape = SubResource("RectangleShape2D_po3eb")
 debug_color = Color(0.590731, 0.000621079, 0.666343, 0.42)
 

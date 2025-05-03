@@ -180,7 +180,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aoan3"]
-size = Vector2(91.875, 72.5)
+size = Vector2(91.875, 78.25)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_4riej"]
 size = Vector2(89, 68)
@@ -207,13 +207,13 @@ animation = &"death"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(-54, 19)
+position = Vector2(-54, 21.875)
 shape = SubResource("RectangleShape2D_aoan3")
 
 [node name="HitBox" type="Area2D" parent="." groups=["enemy_2d", "player"]]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="HitBox" groups=["enemy_2d", "player"]]
-position = Vector2(-54.5, 21)
+position = Vector2(-53, 27)
 shape = SubResource("RectangleShape2D_4riej")
 debug_color = Color(0.699195, 2.08165e-06, 6.73831e-07, 0.419608)
 
@@ -243,6 +243,8 @@ show_percentage = false
 [node name="ChaseArea" type="Area2D" parent="."]
 
 [node name="ChaseCollision" type="CollisionShape2D" parent="ChaseArea"]
-position = Vector2(-55, 19.5)
+position = Vector2(-52, 23)
 shape = SubResource("RectangleShape2D_6aman")
 debug_color = Color(0, 0.404555, 0, 0.419608)
+
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

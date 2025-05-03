@@ -1,6 +1,6 @@
 extends Node2D
 
-const SPEED = 325
+const SPEED = 250
 
 var direction = -1
 
@@ -36,13 +36,12 @@ func _process(delta):
 			direction = -1
 			animated_sprite_2d.flip_h = false
 	elif health_val < 1 and !is_dead:
-		
+		is_dead = true
 		animated_sprite_2d.play("death")
 		
 		
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if animated_sprite_2d.animation == "death":
-		is_dead = true
 		animated_sprite_2d.play("st_death")
 		en_health_bar.visible = false
 		
