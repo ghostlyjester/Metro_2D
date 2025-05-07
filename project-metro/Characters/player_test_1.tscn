@@ -212,7 +212,7 @@ animation = &"attack"
 position = Vector2(15, -9)
 shape = SubResource("RectangleShape2D_5mpea")
 
-[node name="DamageLeft" type="Area2D" parent="." groups=["enemy", "enemy_2d", "player"]]
+[node name="DamageLeft" type="Area2D" parent="." groups=["Door", "enemy", "enemy_2d", "player"]]
 position = Vector2(95, 100)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageLeft" groups=["enemy", "player"]]
@@ -220,7 +220,7 @@ position = Vector2(-111.75, -109)
 shape = SubResource("RectangleShape2D_hem62")
 debug_color = Color(0.960784, 0, 0, 0.419608)
 
-[node name="DamageRight" type="Area2D" parent="." groups=["enemy", "enemy_2d", "player"]]
+[node name="DamageRight" type="Area2D" parent="." groups=["Door", "Zoom", "enemy", "enemy_2d", "player"]]
 position = Vector2(95, 100)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DamageRight" groups=["enemy", "enemy_2d", "player"]]

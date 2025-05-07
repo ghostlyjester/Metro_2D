@@ -44,5 +44,7 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	if animated_sprite_2d.animation == "death":
 		animated_sprite_2d.play("st_death")
 		en_health_bar.visible = false
+
+
 		
 	

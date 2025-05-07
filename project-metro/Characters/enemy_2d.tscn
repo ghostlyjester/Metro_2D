@@ -203,7 +203,7 @@ script = ExtResource("1_4riej")
 position = Vector2(-0.999992, -84)
 scale = Vector2(6.90625, 7.73438)
 sprite_frames = SubResource("SpriteFrames_g58ap")
-animation = &"death"
+animation = &"st_death"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

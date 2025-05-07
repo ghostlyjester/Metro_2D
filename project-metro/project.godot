@@ -27,6 +27,8 @@ window/size/window_height_override=720
 player=""
 enemy=""
 enemy_2d=""
+Zoom=""
+Door=""
 
 [input]
 

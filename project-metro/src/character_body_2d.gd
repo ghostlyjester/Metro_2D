@@ -18,6 +18,9 @@ var in_right = false;
 @onready var health: CanvasLayer = $"../CanvasLayer"
 @onready var anim_sprite = $AnimatedSprite2D
 @onready var health_bar: ProgressBar = $"../CanvasLayer/HealthBar"
+@onready var door: Area2D = $"../door"
+
+
 
 func _ready():
 	# Set up initial animation state
@@ -75,6 +78,10 @@ func _on_damage_right_area_entered(area: Area2D) -> void:
 		print("Enemy Health - 30")
 		enemy_2d.health_val = enemy_2d.health_val - 30
 		in_right = true
+		
+	if area.is_in_group("Door") and is_attacking and !door.is_bk:
+		print("Door - 30")
+		door.health = door.health - 150
 
 
 func _on_damage_left_area_entered(area: Area2D) -> void:
@@ -87,6 +94,10 @@ func _on_damage_left_area_entered(area: Area2D) -> void:
 		print("Enemy Health - 30")
 		enemy_2d.health_val = enemy_2d.health_val - 30
 		in_left = true
+		
+	if area.is_in_group("Door") and is_attacking and !door.is_bk:
+		print("Door - 30")
+		door.health = door.health - 150
 
 
 func _on_pl_hit_box_area_entered(area: Area2D) -> void:
@@ -100,3 +111,5 @@ func _on_pl_hit_box_area_entered(area: Area2D) -> void:
 		health.health_val = health.health_val - 10
 		health_bar.value = health.health_val
 		health_label.text = str(health.health_val)
+	
+		

@@ -7,7 +7,7 @@ var health_val = 140
 
 
 func _ready():
-	$Label.text= "Health:       /100"
+	$Label.text= "Health:         /100"
 	$health.text = str(health_val)
 	health_bar.value = health_val
 
