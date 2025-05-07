@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=3 uid="uid://bmbync0jd6mmm"]
+[gd_scene load_steps=28 format=3 uid="uid://bmbync0jd6mmm"]
 
 [ext_resource type="Script" uid="uid://bfo75mjsnny8s" path="res://src/enemy_2d.gd" id="1_4riej"]
 [ext_resource type="Texture2D" uid="uid://qoemjjmgrmpm" path="res://Assets/Spider Sprite Sheet.png" id="2_4gwwq"]
@@ -191,9 +191,6 @@ bg_color = Color(0, 0, 0, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4gwwq"]
 bg_color = Color(0.618361, 0, 0.0282053, 1)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_6aman"]
-size = Vector2(502, 73)
-
 [node name="enemy_2d" type="CharacterBody2D"]
 position = Vector2(236, 86)
 collision_layer = 4
@@ -203,7 +200,7 @@ script = ExtResource("1_4riej")
 position = Vector2(-0.999992, -84)
 scale = Vector2(6.90625, 7.73438)
 sprite_frames = SubResource("SpriteFrames_g58ap")
-animation = &"st_death"
+animation = &"run"
 flip_h = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -236,12 +233,5 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_4gwwq")
 max_value = 90.0
 value = 50.0
 show_percentage = false
-
-[node name="ChaseArea" type="Area2D" parent="."]
-
-[node name="ChaseCollision" type="CollisionShape2D" parent="ChaseArea"]
-position = Vector2(0, 2)
-shape = SubResource("RectangleShape2D_6aman")
-debug_color = Color(0, 0.404555, 0, 0.419608)
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

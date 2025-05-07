@@ -29,6 +29,7 @@ enemy=""
 enemy_2d=""
 Zoom=""
 Door=""
+enemy_3d=""
 
 [input]
 
