@@ -1,4 +1,4 @@
-[gd_scene load_steps=50 format=3 uid="uid://sjnkjbaf6es4"]
+[gd_scene load_steps=51 format=3 uid="uid://sjnkjbaf6es4"]
 
 [ext_resource type="Script" uid="uid://d1n5cmuwa35ub" path="res://src/world.gd" id="1_036b0"]
 [ext_resource type="PackedScene" uid="uid://bs8b8rin8xe01" path="res://Characters/player_test_1.tscn" id="2_fj7yv"]
@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://buomvm7llqepe" path="res://Characters/platform_1.tscn" id="12_k3n1d"]
 [ext_resource type="PackedScene" uid="uid://dgvqwd2qk72nt" path="res://Characters/door.tscn" id="13_2o6r5"]
 [ext_resource type="PackedScene" uid="uid://cmd4sy84bgpg6" path="res://Characters/enemy_3d.tscn" id="14_70uel"]
+[ext_resource type="AudioStream" uid="uid://cpnxvbvdweegh" path="res://Game Dev. Soundtrack.wav" id="16_2u3nc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ioo17"]
 texture = ExtResource("5_036b0")
@@ -9403,6 +9404,11 @@ layer_0/tile_data = PackedInt32Array(-3866607, 65536, 30, -3932143, 65536, 30, -
 tile_set = SubResource("TileSet_ikiii")
 format = 2
 layer_0/tile_data = PackedInt32Array(-9568130, 2621441, 37, -9568129, 2686977, 37, -9568128, 2752513, 37, -9568127, 2818049, 37, -9568126, 2883585, 37, -9633666, 2621441, 36, -9633665, 2686977, 36, -9633664, 2752513, 36, -9633663, 2818049, 36, -9633662, 2883585, 36, -9699202, 2621441, 35, -9699201, 2686977, 35, -9699200, 2752513, 35, -9699199, 2818049, 35, -9699198, 2883585, 35, -9764738, 2621441, 34, -9764737, 2686977, 34, -9764736, 2752513, 34, -9764735, 2818049, 34, -9764734, 2883585, 34, -9830272, 2752513, 33, -9830271, 2818049, 33)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_2u3nc")
+autoplay = true
+mix_target = 1
 
 [connection signal="timeout" from="CanvasLayer/Timer" to="CharacterBody2D" method="_on_timer_timeout"]
 [connection signal="area_entered" from="ZoomZone" to="ZoomZone" method="_on_area_entered"]
