@@ -8973,7 +8973,7 @@ position = Vector2(-3, 2)
 script = ExtResource("1_036b0")
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.0687983, 0.0687983, 0.0687983, 1)
+color = Color(0.2484, 0.2484, 0.2484, 1)
 
 [node name="bg" parent="CanvasModulate" instance=ExtResource("4_ic0uy")]
 z_index = -1
